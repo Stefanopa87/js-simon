@@ -19,63 +19,19 @@
       color: #fff;
     }
 
-    /* .button{
-      text-align: center;
-    } */
-
     </style>
   </head>
   <body>
     <h1 id="title">Indovina i numeri tra 5 secondi:</h1>
     <h2 id="title-result"></h2>
-    <!-- <div class="button">
-      <button id="button">clicca per far partire il gioco</button>
-    </div> -->
-
 
     <script type="text/javascript">
-
-    // alert con "fine giro" dopo 5 secondi (setTimeout)
-
-    function msg(){
-      alert("fine giro")
-    }
-
-    function init1(){
-      setTimeout(msg, 5000)
-    }
-
-    // init1()
-
-
-    // - stampare in pagina cronometro che arriva a 5 secondi (setInterval)
-
-    sec = 0;
-    var clock; // questa mi serve per fermare INTERVAL con la parola magica clearIterval
-
-    function tick(){
-      document.getElementById('title-result').innerHTML = ++sec;
-
-      if ( sec > 5){
-        clearInterval(clock)
-        document.getElementById('title-result').innerHTML = "FINE";
-      }
-    }
-
-    function init2(){
-      clock = setInterval(tick, 1000);
-    }
-
-    // init2()
 
     // Un alert() espone 5 numeri generati casualmente.
     // Da li parte un timer di 30 secondi.
     // Dopo 30 secondi l'utente deve inserire, uno alla volta, i numeri che ha visto precedentemente, tramite il prompt().
     // Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
 
-
-    // sezione di var che mi servono
-    // var numbersPc = [];
 
     // sezione ALERT
     function alertRnd (min, max) {
@@ -90,13 +46,14 @@
         if (numbersPc.indexOf(valuePc) == -1) {
           numbersPc.push(valuePc);
         }
-
       }
       alert(numbersPc);
       console.log(numbersPc);
+
+      return numbersPc;
     }
 
-    var result = alertRnd (1, 30);
+    var resultPc = alertRnd (1, 30); // questa RESULT la uso per confronto (la porto fuori con -return numbersPC-)
     // fine sezione ALERT
 
 
@@ -124,29 +81,39 @@
     // sezione domande
     function play(){
 
-      numberUser = [];
+      numbersUser = [];
 
-     for (var i = 0; numberUser.length < 5; i++) {
+     for (var i = 0; numbersUser.length < 5; i++) {
        var valueUser = parseInt(prompt("dimmi i numeri che ricordi"));
-       numberUser.push(valueUser);
+       numbersUser.push(valueUser);
       }
-      console.log(numberUser);
-
-      // confronto
+      console.log(numbersUser);
 
 
-      
+      match(resultPc, numbersUser);
     }
 
     function question(){
       setTimeout(play, 7000)
     }
-
     question()
+    // fine sezione domande
 
 
+    // confronto
 
+    // confronto resultPc con ResultUser
+    function match(a, b) {
 
+      if (a.indexOf(b) == -1){
+        console.log("hai vinto");
+      } else {
+        console.log("hai perso");
+      }
+
+      // in evoluzione.. problema di tempo devo scappare..
+
+    }
 
     </script>
   </body>
