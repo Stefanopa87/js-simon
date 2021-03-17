@@ -1,0 +1,153 @@
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>NUMERI</title>
+
+    <style media="screen">
+
+    body{
+      background: linear-gradient(135deg, #af4c86 0%, #1c2de8 100%);
+    }
+    h1{
+      text-align: center;
+      color: #fff;
+      margin-top: 100px;
+    }
+
+    h2{
+      text-align: center;
+      color: #fff;
+    }
+
+    /* .button{
+      text-align: center;
+    } */
+
+    </style>
+  </head>
+  <body>
+    <h1 id="title">Indovina i numeri tra 5 secondi:</h1>
+    <h2 id="title-result"></h2>
+    <!-- <div class="button">
+      <button id="button">clicca per far partire il gioco</button>
+    </div> -->
+
+
+    <script type="text/javascript">
+
+    // alert con "fine giro" dopo 5 secondi (setTimeout)
+
+    function msg(){
+      alert("fine giro")
+    }
+
+    function init1(){
+      setTimeout(msg, 5000)
+    }
+
+    // init1()
+
+
+    // - stampare in pagina cronometro che arriva a 5 secondi (setInterval)
+
+    sec = 0;
+    var clock; // questa mi serve per fermare INTERVAL con la parola magica clearIterval
+
+    function tick(){
+      document.getElementById('title-result').innerHTML = ++sec;
+
+      if ( sec > 5){
+        clearInterval(clock)
+        document.getElementById('title-result').innerHTML = "FINE";
+      }
+    }
+
+    function init2(){
+      clock = setInterval(tick, 1000);
+    }
+
+    // init2()
+
+    // Un alert() espone 5 numeri generati casualmente.
+    // Da li parte un timer di 30 secondi.
+    // Dopo 30 secondi l'utente deve inserire, uno alla volta, i numeri che ha visto precedentemente, tramite il prompt().
+    // Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
+
+
+    // sezione di var che mi servono
+    // var numbersPc = [];
+
+    // sezione ALERT
+    function alertRnd (min, max) {
+      var min;
+      var max = max - min + 1;
+
+      var numbersPc = [];
+
+      for (var i = 0; numbersPc.length < 5; i++ ) {
+        var valuePc = Math.floor(Math.random() * max) + min;
+
+        if (numbersPc.indexOf(valuePc) == -1) {
+          numbersPc.push(valuePc);
+        }
+
+      }
+      alert(numbersPc);
+      console.log(numbersPc);
+    }
+
+    var result = alertRnd (1, 30);
+    // fine sezione ALERT
+
+
+    // conto alla rovescia
+    var sec = 5;
+    var clock;
+
+    function tick(){
+      document.getElementById('title-result').innerHTML = sec--;
+
+      if ( sec < 0){
+        clearInterval(clock)
+        document.getElementById('title-result').innerHTML = "FINE";
+      }
+    }
+
+    function time(){
+      clock = setInterval(tick, 1000);
+    }
+
+    time ();
+    // fine conto alla rovescia
+
+
+    // sezione domande
+    function play(){
+
+      numberUser = [];
+
+     for (var i = 0; numberUser.length < 5; i++) {
+       var valueUser = parseInt(prompt("dimmi i numeri che ricordi"));
+       numberUser.push(valueUser);
+      }
+      console.log(numberUser);
+
+      // confronto
+
+
+      
+    }
+
+    function question(){
+      setTimeout(play, 7000)
+    }
+
+    question()
+
+
+
+
+
+    </script>
+  </body>
+</html>
