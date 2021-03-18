@@ -83,14 +83,21 @@
 
       numbersUser = [];
 
+      numbersDone = [];
+
      for (var i = 0; numbersUser.length < 5; i++) {
        var valueUser = parseInt(prompt("dimmi i numeri che ricordi"));
-       numbersUser.push(valueUser);
+
+        // confronto
+       if(!numbersUser.includes(valueUser)){
+         numbersUser.push(valueUser);
+         if (resultPc.includes(valueUser)){
+           numbersDone.push(valueUser);
+         }
+
+         console.log(numbersUser, numbersDone, ("hai fatto " + numbersDone.length + " punti"))
+        }
       }
-      console.log(numbersUser);
-
-
-      match(resultPc, numbersUser);
     }
 
     function question(){
@@ -98,23 +105,6 @@
     }
     question()
     // fine sezione domande
-
-
-    // confronto
-
-    // confronto resultPc con ResultUser
-    function match(a, b) {
-
-      if (a.indexOf(b) == -1){
-        console.log("hai vinto");
-      } else {
-        console.log("hai perso");
-      }
-
-      // in evoluzione.. problema di tempo devo scappare..
-
-    }
-
     </script>
   </body>
 </html>
